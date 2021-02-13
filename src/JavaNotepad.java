@@ -126,17 +126,24 @@ public class JavaNotepad extends JFrame
         add(menuBar, BorderLayout.NORTH);
 
         JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP, JTabbedPane.SCROLL_TAB_LAYOUT);
-        tabbedPane.addTab("Tab0", new JLabel("Tab0"));
-        tabbedPane.addTab("Tab1", null, new JTextArea(), "Tab2");
+        // tabbedPane.addTab("Tab0", new JLabel("Tab0"));
+        // tabbedPane.addTab("Tab1", null, new JTextArea(), "Tab2");
  // In this case the custom component is responsible for rendering the
  // title of the tab.
         // tabbedPane.addTab(null, new JLabel("Tab1"));
         // JComponent panel4 = makeTextPanel(
         // "Panel #4 (has a preferred size of 410 x 50).");
         JPanel panel4 = new JPanel(new BorderLayout());
-        panel4.add(new JTextArea("My text area"), BorderLayout.CENTER);
-    panel4.setPreferredSize(new Dimension(410, 50));
-    tabbedPane.addTab("Tab 4", null, panel4, "Does nothing at all");
+        area = new JTextArea();
+        area.setFont(new Font("Consolas", Font.HANGING_BASELINE, 14));
+        area.setTabSize(4);
+        area.addCaretListener(this);
+        panel4.add(area, BorderLayout.CENTER);
+        // panel4.setPreferredSize(new Dimension(410, 50));
+        tabbedPane.addTab("Tab 0", null, panel4, "Tab 0");
+        // tabbedPane.addTab("Tab 1", null, panel4, "Tab 1");
+        // tabbedPane.addTab("Tab 2", null, panel4, "Tab 2");
+        // tabbedPane.addTab("Tab 3", null, panel4, "Tab 3");
         // tabbedPane.setTabComponentAt(0, new JLabel("Tab2"));
         add(tabbedPane, BorderLayout.CENTER);
     }
@@ -147,8 +154,27 @@ public class JavaNotepad extends JFrame
 
     @Override
     public void caretUpdate(CaretEvent ce) {
+        int line = 1, col = 1;
+        try {
+            // First we find the position of the caret. This is the number of where the caret is in relation to the start of the JTextArea
+                    // in the upper left corner. We use this position to find offset values (eg what line we are on for the given position as well as
+                    // what position that line starts on.
+                    int caretpos = area.getCaretPosition();
+                    line = area.getLineOfOffset(caretpos);
+
+                    // We subtract the offset of where our line starts from the overall caret position.
+                    // So lets say that we are on line 5 and that line starts at caret position 100, if our caret position is currently 106
+                    // we know that we must be on column 6 of line 5.
+                    col = caretpos - area.getLineStartOffset(line);
+
+                    // We have to add one here because line numbers start at 0 for getLineOfOffset and we want it to start at 1 for display.
+                    line += 1;
+        } catch (Exception e) {
+            //TODO: handle exception
+            System.out.println("Error in JavaNotepadCaretListener : " + e);
+        }
         if (ce.getSource() == area) {
-            status.setText(area.getCaretPosition() + "    " + area.getLineCount() + "    ");
+            status.setText("Ln " + line + "    Col " + col + "    ");
         }
 
     }
