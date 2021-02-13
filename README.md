@@ -41,6 +41,10 @@ Features of this Text Editor:
  - Line & Word wrapping.
  - Resizable text.
 
+<!-- LICENSE -->
+## License
+ - Distributed under the MIT License. See `LICENSE` for more information.
+
 ## Resources
  - [Using Swing Components - Java Documentation](https://docs.oracle.com/javase/tutorial/uiswing/components/index.html)
 ## Contributors
