@@ -26,7 +26,7 @@
 ## About The Project
 Welcome to JavaNotepad. 
 
-![JavaNotepad](https://github.com/DHANANJAY130/JavaNotepad/blob/main/assets/JavaNotepad.jpg)
+![JavaNotepad](assets/JavaNotepad.jpg)
 
 
 <!-- ## Getting Started -->
