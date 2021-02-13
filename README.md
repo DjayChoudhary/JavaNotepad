@@ -4,9 +4,9 @@
   <ol>
     <li>
       <a href="#about-the-project">About The Project</a>
-      <ul>
+      <!-- <ul>
         <li><a href="#built-with">Built With</a></li>
-      </ul>
+      </ul> -->
     </li>
     <!-- <li>
       <a href="#getting-started">Getting Started</a>
@@ -16,8 +16,8 @@
       </ul>
     </li> -->
     <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgements">Resources</a></li>
+    <li><a href="#contributors">Contributors</a></li>
   </ol>
 </details>
 
